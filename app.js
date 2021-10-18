@@ -42,7 +42,7 @@ function collectAutoUpgrades() {
   update()
 }
 
-setInterval(collectAutoUpgrades, 1000)
+setInterval(collectAutoUpgrades, 30000)
 
 
 
