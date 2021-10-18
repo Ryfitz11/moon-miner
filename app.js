@@ -16,11 +16,12 @@ let clickUpgrade = {
     multiplier: 5
   }
 }
+
 let autoUpgrade = {
   rovers: {
     price: 10,
     quantity: 0,
-    multiplier: 1
+    multiplier: 2
   },
   falcon: {
     price: 100,
@@ -29,40 +30,21 @@ let autoUpgrade = {
   }
 }
 
-function startInterval() {
+function collectAutoUpgrades() {
+  console.log("tick")
+  for (let property in autoUpgrade) {
+    console.log(autoUpgrade[property])
+    cheese += autoUpgrade[property].quantity * autoUpgrade[property].multiplier
 
-  collectionInterval = setInterval(collectAutoUpgrades, 1000);
-}
-
-function collectAutoUpgrades(collectionInterval, cheese) {
-
-  for (let i = 0; i < autoUpgrade.length; i++) {
-    collectionInterval += autoUpgrade[i].quantity * autoUpgrade[i].multiplier
-    cheese += collectionInterval
+    // collectionInterval += autoUpgrade[i].quantity * autoUpgrade[i].multiplier
+    // cheese += collectionInterval
   }
+  update()
 }
 
+setInterval(collectAutoUpgrades, 1000)
 
-function buyRover() {
-  if (cheese >= autoUpgrade.rovers.price) {
-    autoUpgrade.rovers.quantity++
-    cheese -= autoUpgrade.rovers.price
-    autoUpgrade.rovers.price += 10
-    collectionInterval += autoUpgrade.rovers.quantity
-    update()
 
-  }
-}
-function buyFalcon() {
-  if (cheese >= autoUpgrade.falcon.price) {
-    autoUpgrade.falcon.quantity++
-    cheese -= autoUpgrade.falcon.price
-    autoUpgrade.falcon.price += 10000
-    collectionInterval += autoUpgrade.falcon.quantity
-    update()
-
-  }
-}
 
 function mine() {
   cheese += totalMultiplier
@@ -77,6 +59,7 @@ function buyPickaxe() {
     update()
   }
 }
+
 function buyCart() {
   if (cheese >= clickUpgrade.carts.price) {
     cheese -= clickUpgrade.carts.price
@@ -84,6 +67,28 @@ function buyCart() {
     totalMultiplier += 10
     clickUpgrade.carts.price += 10
     update()
+  }
+}
+
+function buyRover() {
+  if (cheese >= autoUpgrade.rovers.price) {
+    autoUpgrade.rovers.quantity++
+    cheese -= autoUpgrade.rovers.price
+    autoUpgrade.rovers.price += 10
+    collectionInterval += autoUpgrade.rovers.quantity
+    update()
+
+  }
+}
+
+function buyFalcon() {
+  if (cheese >= autoUpgrade.falcon.price) {
+    autoUpgrade.falcon.quantity++
+    cheese -= autoUpgrade.falcon.price
+    autoUpgrade.falcon.price += 10000
+    collectionInterval += autoUpgrade.falcon.quantity
+    update()
+
   }
 }
 
@@ -104,4 +109,3 @@ function update() {
 //create a second function similar to the mine function that increase the cheese based on how many auto upgrades we have and how much their multipliers are. (hint: math)
 
 //setInterval(funcName, amountOfTime(in milliseconds))
-startInterval()
