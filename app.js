@@ -35,14 +35,11 @@ function collectAutoUpgrades() {
   for (let property in autoUpgrade) {
     console.log(autoUpgrade[property])
     cheese += autoUpgrade[property].quantity * autoUpgrade[property].multiplier
-
-    // collectionInterval += autoUpgrade[i].quantity * autoUpgrade[i].multiplier
-    // cheese += collectionInterval
   }
   update()
 }
 
-setInterval(collectAutoUpgrades, 30000)
+setInterval(collectAutoUpgrades, 5000)
 
 
 
@@ -85,7 +82,7 @@ function buyFalcon() {
   if (cheese >= autoUpgrade.falcon.price) {
     autoUpgrade.falcon.quantity++
     cheese -= autoUpgrade.falcon.price
-    autoUpgrade.falcon.price += 10000
+    autoUpgrade.falcon.price += 100
     collectionInterval += autoUpgrade.falcon.quantity
     update()
 
