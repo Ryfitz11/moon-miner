@@ -1,0 +1,19 @@
+
+   
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 40em;
+
+}
+
+main {
+ flex-grow: 1;
+}
+
+#img {
+  height: 20em;
+  width: 20em;
+  object-fit: contain;
+  object-position: center bottom;
+}
